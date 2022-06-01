@@ -1,1 +1,119 @@
-@tailwind base;
+/*
+! tailwindcss v3.0.24 | MIT License | https://tailwindcss.com
+*/
+*,
+:after,
+:before {
+    border: 0 solid;
+    box-sizing: border-box
+}
+
+:after,
+:before {
+    --tw-content: ""
+}
+
+tbox {
+    -webkit-text-size-adjust: 100%;
+    line-height: 1.5;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-size: inherit;
+        font-weight: inherit
+    }
+
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+        color: inherit;
+        font-family: inherit;
+        font-size: 100%;
+        line-height: inherit;
+        margin: 0;
+        padding: 0
+    }
+
+    button,
+    select {
+        text-transform: none
+    }
+
+    [type=button],
+    [type=reset],
+    [type=submit],
+    button {
+        -webkit-appearance: button;
+        background-color: transparent;
+        background-image: none
+    }
+
+    [type=search] {
+        -webkit-appearance: textfield;
+        outline-offset: -2px
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin: 0
+    }
+
+    ol,
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0
+    }
+
+    textarea {
+        resize: vertical
+    }
+
+    input::-moz-placeholder,
+    textarea::-moz-placeholder {
+        color: #9ca3af;
+        opacity: 1
+    }
+
+    input:-ms-input-placeholder,
+    textarea:-ms-input-placeholder {
+        color: #9ca3af;
+        opacity: 1
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+        color: #9ca3af;
+        opacity: 1
+    }
+
+    [role=button],
+    button {
+        cursor: pointer
+    }
+
+    img,
+    video {
+        height: auto;
+        max-width: 100%
+    }
+
+    [hidden] {
+        display: none
+    }
+}
+
+/*# sourceMappingURL=index.min.css.map */
