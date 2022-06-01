@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Color customisation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Juste Bocovo">
+
+    <!-- styles -->
+    <link rel="stylesheet" href="../assets/tailwind.min.css"
+        integrity="sha512-wnea99uKIC3TJF7v4eKk4Y+lMz2Mklv18+r4na2Gn1abDRPPOeef95xTzdwGD9e6zXJBteMIhZ1+68QC5byJZw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="../../dist/minified/index.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --tbox-primary: rgb(250, 86, 94);
+            --tbox-primary-light: rgb(250, 159, 159);
+            --tbox-text-white: white;
+            --tbox-very-light-primary: rgb(238, 239, 252);
+        }
+    </style>
+</head>
+
+<body class=" bg-white">
+    <div class="flex flex-col items-center ">
+        <div class=" max-w-lg">
+            <h1 class="display-1 text-center my-5 text-6xl font-bold text-red-500">Color customisation</h1>
+            <p class=" text-center text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id dolorem
+                corporis natus eveniet nesciunt alias fugit temporibus ducimus deleniti ex delectus ipsum voluptatum
+                reiciendis pariatur dicta non, neque at sed.</p>
+        </div>
+        <div class="my-5">
+            <button data-step-title="Start button" id="start"
+                class=" text-white rounded-md shadow-md bg-red-500 py-2 px-6 text-lg font-bold">Start
+                tour</button>
+        </div>
+        <div class="grid lg:mx-24 grid-cols-2 gap-4 mt-6">
+            <div>
+                <h2 data-step-title="Section 1"
+                    data-step-des="Some description for section one.A nobis error minus laborum cupiditate debitis. Fugit laborum possimus numquam! In at esse repudiandae saepe voluptas error cum eligendi laboriosam quod."
+                    class=" font-bold text-xl">Section 1</h2>
+                <p class=" text-gray-600 ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A nobis error minus
+                    laborum cupiditate
+                    debitis. Fugit laborum possimus numquam! In at esse repudiandae saepe voluptas error cum eligendi
+                    laboriosam quod.</p>
+            </div>
+            <div>
+                <h2 data-step-title="Section 2"
+                    data-step-des="Some description for section two.A nobis error minus laborum cupiditate debitis. Fugit laborum possimus numquam! In at esse repudiandae saepe voluptas error cum eligendi laboriosam quod."
+                    class=" font-bold text-xl">Section 1</h2>
+                <p class=" text-gray-600 ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A nobis error minus
+                    laborum cupiditate
+                    debitis. Fugit laborum possimus numquam! In at esse repudiandae saepe voluptas error cum eligendi
+                    laboriosam quod.</p>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../../dist/minified/index.min.js"></script>
+    <script>
+
+        const btn = document.getElementById("start")
+        const tuto = TutoBox()
+        const start = () => {
+            tuto.startTour()
+        }
+
+        btn.addEventListener("click", start)
+
+    </script>
+</body>
+
+</html>

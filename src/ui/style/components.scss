@@ -1,0 +1,222 @@
+ %anim-modal {
+     background-color: #0000;
+     transition: background-color 400ms ease-in-out;
+ }
+
+ %modal {
+     position: fixed;
+     width: 100vw;
+     height: 100vh;
+     bottom: 0;
+     right: 0;
+     left: 0;
+     background: #000000c7;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+ %shadow {
+     box-shadow: 0 0 5px #4e4e4e;
+ }
+
+ %shadow-lg {
+     box-shadow: 0 0 20px 5px #666565;
+ }
+
+ .tbox- {
+     &tooltip-main {
+         @extend %anim-modal;
+         z-index: 1;
+
+         .tooltip-help-box {
+             width: 90vw;
+             max-width: 250px;
+
+             >div {
+                 background-color: white;
+             }
+         }
+     }
+
+
+     &tooltip-main:not(.tbox-headless) {
+         .tooltip-help-box {
+             position: absolute;
+             top: 0;
+             left: 0;
+
+             >div {
+                 @extend %shadow;
+             }
+         }
+     }
+
+     &tooltip-main.tbox-headless {
+         @extend %modal
+     }
+
+     &caret {
+         display: inline-block;
+         border-bottom: 10px var(--tbox-primary);
+         border-left: 10px transparent;
+         border-right: 10px transparent;
+         border-style: solid;
+         z-index: 1;
+
+         &.top,
+         &.bottom {
+             margin: 0 20px;
+         }
+
+         &.left,
+         &.right {
+             margin: 20px 0;
+         }
+     }
+
+     &closer {
+         display: flex;
+         width: 20px;
+         height: 20px;
+
+         &::after,
+         &::before {
+             content: " ";
+             position: absolute;
+             height: 20px;
+             width: 2px;
+             background-color: black;
+             display: block;
+             left: 50%;
+             top: 0;
+         }
+
+         &::after {
+             transform: rotate(45deg);
+         }
+
+         &::before {
+             transform: rotate(-45deg);
+         }
+
+         &:hover {
+
+             &::after,
+             &::before {
+                 background-color: var(--tbox-primary);
+             }
+         }
+     }
+
+     &divider {
+         opacity: 0.2;
+         border-bottom: 1px solid var(--tbox-primary);
+     }
+
+     &axe-anim {
+         transition-property: top, left, height, width;
+         transition-duration: 200ms;
+     }
+
+     &highlighter {
+         animation: lighter-box 400ms infinite alternate;
+     }
+
+     &help-box {
+         position: fixed;
+         left: 10px;
+         bottom: 0;
+
+         &:not(.open) {
+             @extend %shadow-lg;
+         }
+
+         >div {
+             background-color: white;
+             border-top-left-radius: 0.35rem;
+             border-top-right-radius: 0.35rem;
+         }
+
+         &.open {
+             @extend %anim-modal;
+             @extend %modal;
+
+             >div {
+                 width: 90vw;
+                 max-width: 350px;
+                 border-bottom-left-radius: 0.35rem;
+                 border-bottom-right-radius: 0.35rem;
+             }
+         }
+     }
+
+     &tuto-list {
+         max-height: 35vh;
+         overflow-y: scroll;
+
+         &::-webkit-scrollbar {
+             width: 10px;
+         }
+
+         &::-webkit-scrollbar-track {
+             background-color: transparent;
+         }
+
+         &::-webkit-scrollbar-thumb {
+             background-color: #dadada;
+             border-radius: 10px;
+             border: 2px solid transparent;
+             background-clip: content-box;
+         }
+
+         li:not(:last-child) {
+             border-bottom: 1px solid #dadada;
+         }
+     }
+
+     &auto-complete-wrapper {
+         z-index: 1;
+         height: 67px;
+
+         .tbox-auto-complete {
+             background-color: white;
+             border-radius: 6px;
+             border: 1px solid #aaa;
+             transition: box-shadow 200ms;
+             box-shadow: 0 0 0;
+
+             &.open {
+                 @extend %shadow;
+                 border: none;
+             }
+         }
+     }
+
+     &auto-complete-list {
+         animation: scale-up-vertical-top 0.1s linear
+     }
+
+     &bubbles {
+         display: flex;
+         align-items: center;
+         flex-wrap: wrap;
+         justify-content: center;
+         li {
+             width: 6px;
+             height: 6px;
+             cursor: pointer; 
+             margin: 3px;
+             border-radius: 20px;
+             transition: all 200ms ease-in-out;
+             background-color: var(--tbox-bubbles, #ccc);
+
+             &.active,
+             &:hover {
+                 width: 12px;
+                 height: 8px;
+                 background-color: var(--tbox-bubbles-active, var(--tbox-primary));
+             }
+         }
+     }
+ }

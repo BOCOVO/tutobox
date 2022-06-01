@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Dynamic tutorial</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Juste Bocovo">
+
+    <!-- styles -->
+    <link rel="stylesheet" href="../assets/tailwind.min.css"
+        integrity="sha512-wnea99uKIC3TJF7v4eKk4Y+lMz2Mklv18+r4na2Gn1abDRPPOeef95xTzdwGD9e6zXJBteMIhZ1+68QC5byJZw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="../../dist/minified/index.min.css" rel="stylesheet">
+</head>
+
+<body class=" bg-white">
+    <div class="flex flex-col items-center ">
+        <div class=" max-w-lg">
+            <h1 class="display-1 text-center my-5 text-6xl font-bold text-blue-500">Extends path</h1>
+            <p class=" text-center text-base">This page contains two different
+                tutorials. On some element is these two tutorials but with different description text and step number.
+            </p>
+        </div>
+        <div class="my-5">
+            <button data-tuto="tuto" data-dynamic-step="true" data-step-des="The first tutotrial start from here."
+                data-step-title="Start button" data-step="1" id="start"
+                class=" text-white rounded-md shadow-md bg-blue-500 py-2 px-6 text-lg font-bold mx-2">Start
+                tuto</button>
+        </div>
+        <div id="container" class="md:m-10 lg:m-24 gap-4 grid grid-cols-4 ">
+            <div data-tuto="tuto" data-step="2" data-step-des="This is the step 2"
+                class=" text-white p-4 bg-yellow-500 rounded">
+                <h4 class="font-bold text-2xl">
+                    Step Nº 1
+                </h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <button id="tonext1" class="mt-5 bg-yellow-100 font-semibold rounded-lg px-4 py-2 text-yellow-600">
+                    Next
+                </button>
+            </div>
+        </div>
+    </div>
+    <template id="temp1">
+        <div data-tuto="tuto" data-step="3" data-step-des="This is the step 3"
+            class=" text-white p-4 bg-purple-500 rounded">
+            <h4 class="font-bold text-2xl">
+                Step Nº 2
+            </h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+        <div data-tuto="tuto" data-step-action="click" data-action-selector="#tonext2" data-step="4" data-step-des="This is the step 1"
+            class=" text-white p-4 bg-red-500 rounded">
+            <h4 class="font-bold text-2xl">
+                Step Nº 3
+            </h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <button id="tonext2" class="mt-5 bg-red-100 font-semibold rounded-lg px-4 py-2 text-red-600">
+                Show last
+            </button>
+        </div>
+    </template>
+    <template id="temp2">
+        <div data-tuto="tuto" data-step="end" data-step-des="This is the step 4"
+            class=" text-white p-4 bg-pink-500 rounded">
+            <h4 class="font-bold text-2xl">
+                Step Nº 4
+            </h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+    </template>
+    <script type="text/javascript" src="../../dist/minified/index.min.js"></script>
+    <script>
+        const tuto = TutoBox()
+
+        const startTuto = () => {
+            tuto.startTuto("tuto")
+        }
+
+        const startButton = document.getElementById("start")
+        startButton.addEventListener("click",startTuto)
+
+        const appendTemplate = (templateID) => {
+            const temp = document.getElementById(templateID)
+            const content = temp.content.cloneNode(true)
+            const container = document.getElementById("container")
+            container.appendChild(content)
+        }
+        const btn1 = document.getElementById("tonext1")
+        
+        const showStepLast = async () => {
+            await new Promise((r)=> setTimeout(r,5000))
+            appendTemplate("temp2")
+            btn2.setAttribute("disabled","true")
+        }
+
+        const showStepThreeAndFour = () => {
+            appendTemplate("temp1")
+            const btn2 = document.getElementById("tonext2")
+            btn2.addEventListener("click", showStepLast)
+            btn1.setAttribute("disabled","true")
+        }
+
+        // go to next buttons
+
+        btn1.addEventListener("click", showStepThreeAndFour)
+
+    </script>
+</body>
+
+</html>

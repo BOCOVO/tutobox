@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Extends Path</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Juste Bocovo">
+
+    <!-- styles -->
+    <link rel="stylesheet" href="../assets/tailwind.min.css"
+        integrity="sha512-wnea99uKIC3TJF7v4eKk4Y+lMz2Mklv18+r4na2Gn1abDRPPOeef95xTzdwGD9e6zXJBteMIhZ1+68QC5byJZw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="../../dist/minified/index.min.css" rel="stylesheet">
+</head>
+
+<body class=" bg-white">
+    <div class="flex flex-col items-center ">
+        <div class=" max-w-lg">
+            <h1 data-tuto="main-tuto" data-step="1" data-step-des="Tuto 1 and tuto 2 both extends this tuto" class="display-1 text-center my-5 text-6xl font-bold text-blue-500">Extends path</h1>
+            <p data-tuto="tuto-1|tuto-2"
+                data-step-title="This element is used for both tutorials with a description specific to each tutorial. Its step for each tutorials is also different."
+                data-step-des="tuto-1:This description is the description of the first tutorial. tuto-2:Another description for the second tutorial."
+                data-step="tuto-1:end tuto-2:2" class=" text-center text-base">This page contains two different
+                tutorials. On some element is these two tutorials but with different description text and step number.
+            </p>
+        </div>
+        <div class="my-5">
+            <button data-tuto="tuto-1" data-step-des="The first tutotrial start from here."
+                data-step-title="Start button" data-step="1" id="start-1"
+                class=" text-white rounded-md shadow-md bg-blue-500 py-2 px-6 text-lg font-bold mx-2">Start tuto
+                1</button>
+            <button data-tuto="tuto-2" data-step-des="The second tutotrial start from here."
+                data-step-title="Start button" data-step="1" id="start-2"
+                class=" text-white rounded-md shadow-md text-blue-500 py-2 px-6 text-lg font-bold mx-2 bg-gray-50">Start
+                tuto
+                2</button>
+        </div>
+        <div class="grid lg:mx-24 grid-cols-2 gap-4 mt-6">
+            <div>
+                <h2 data-step-title="Step 2" data-tuto="tuto-1" data-step="2"
+                    data-step-des="The second step of the first tutorial" class=" font-bold text-xl">Section 1</h2>
+                <p class=" text-gray-600 ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A nobis error minus
+                    laborum cupiditate
+                    debitis. Fugit laborum possimus numquam! In at esse repudiandae saepe voluptas error cum eligendi
+                    laboriosam quod.</p>
+            </div>
+            <div>
+                <h2 data-tuto="tuto-2" data-step="3" data-step-title="End of tuto 2"
+                    data-step-html="<img class='rounded-md' style='width:100%;' src='https://images.unsplash.com/photo-1653669485183-f4adf5806da9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY1MzY3OTUzMQ&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080' />"
+                    class=" font-bold text-xl">With image</h2>
+                <p class=" text-gray-600 ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A nobis error minus
+                    laborum cupiditates
+                    debitis. Fugit laborum possimus numquam! In at esse repudiandae saepe voluptas error cum eligendi
+                    laboriosam quod.</p>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../../dist/minified/index.min.js"></script>
+    <script>
+        const tuto = TutoBox({
+            extendsHelpers: [
+                {
+                    title: "The first tutorial",
+                    tutoName: "tuto-1",
+                    extendsTuto: "main-tuto",
+
+                },
+                {
+                    title: "The tuto 2",
+                    tutoName: "tuto-2",
+                    extendsTuto: "main-tuto"
+                }
+            ]
+        })
+        // start tuto 1 callbsck
+        const startFirstTuto = () => {
+            tuto.startTuto("tuto-1")
+        }
+        // start tuto 2 callbsck
+        const startSecondTuto = () => {
+            tuto.startTuto("tuto-2")
+        }
+
+        // start buttons
+        const btn1 = document.getElementById("start-1")
+        const btn2 = document.getElementById("start-2")
+
+        btn1.addEventListener("click", startFirstTuto)
+        btn2.addEventListener("click", startSecondTuto)
+
+    </script>
+</body>
+
+</html>

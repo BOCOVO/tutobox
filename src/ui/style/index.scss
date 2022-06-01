@@ -1,0 +1,18 @@
+:root {
+    --tbox-primary: rgb(86, 102, 250);
+    --tbox-primary-light: rgb(125, 138, 255);
+    --tbox-text-white: white;
+    --tbox-very-light-primary: rgb(238, 239, 252);
+}
+
+@tailwind utilities;
+@tailwind components;
+@import "reset.scss";
+
+.tbox {
+    z-index: 10000;
+
+    @import "loader.scss";
+    @import "animation.scss";
+    @import "components.scss";
+}

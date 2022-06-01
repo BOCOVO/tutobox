@@ -1,0 +1,1 @@
+export const AUTO_HELP_TUTO_NAME = "tbox-auto-help"
