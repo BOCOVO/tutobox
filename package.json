@@ -1,15 +1,26 @@
 {
-  "name": "tuto-box",
-  "version": "1.0.0",
-  "description": "",
+  "name": "tutobox",
+  "version": "0.0.1",
+  "description": "User Onboarding and Product Walkthrough Library",
+  "author": "Juste Bocovo",
+  "keywords": [
+    "onboarding",
+    "tour",
+    "intro",
+    "guide",
+    "walkthrough",
+    "user-onboarding",
+    "tutorial",
+    "help",
+    "TutoBox",
+    "tutobox"
+  ],
   "main": "index.js",
   "scripts": {
     "test": "jest",
     "build": "rollup -c",
-    "build:watch": "rollup -c -w",
-    "build:dev": "esbuild ./src/index.tsx --format=iife --global-name=TutoBox --minify --watch --bundle --outfile=dist/minified/index.min.js"
+    "build:watch": "rollup -c -w"
   }, 
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "@floating-ui/dom": "^0.5.0"
@@ -34,14 +45,12 @@
     "acorn-jsx": "^5.3.2",
     "autoprefixer": "^10.4.7",
     "babel-jest": "^28.1.0",
-    "esbuild": "^0.14.39",
     "eslint": "8.2.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-plugin-import": "2.25.2",
     "jest": "^28.1.0",
     "jest-environment-jsdom": "^28.1.0",
-    "lodash-es": "^4.17.21",
     "node-sass": "^7.0.1",
     "postcss": "^8.4.13",
     "preact": "^10.7.2",
