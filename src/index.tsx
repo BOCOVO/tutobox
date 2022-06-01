@@ -118,6 +118,9 @@ class _TutoBox {
     /** User API */
 
     addEventListener(eventName: EventType, callback: EventCallback) {
+        if(typeof callback !== "function"){
+            throw new Error("The event listener callback must be a function.");
+        }
         if (!this.eventsCallbacks[eventName]) {
             this.eventsCallbacks[eventName] = []
         }
