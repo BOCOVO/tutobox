@@ -12,7 +12,7 @@ function stopTuto(this: TutoBoxType){
         throw new Error("Enable to stop tuto because no tuto was started");
     }
     const tutoName = this.currentTuto.name
-    this.runCallback("beforeStopTuto",{
+    this.runCallback("before-stop-tuto",{
         tutoName
     })
 
