@@ -5,7 +5,6 @@ import { TutoBoxOptions } from "./types/tuto.type";
 import { EventCallback, EventsCallbacks, TutoBoxType } from "./types/tutobox.type";
 import { ArgumentsType } from "./types/utils.type";
 import App from "./ui/components";
-import merge from "lodash-es/merge"
 import createObserver from "./core/createObserver";
 import observerCallback from "./core/observerCallback";
 import patchUpdate from "./core/patchUpdate";
@@ -142,11 +141,11 @@ class _TutoBox {
         return false
     }
 
-    goToStep = (step:number) => {
+    goToStep = (step: number) => {
         if (step < 1) {
             console.error(`The value ${step} is invalid as step number. The steps are numbered from 1.`)
         } else {
-            changeStep.call(this as this & TutoBoxType, step-1);
+            changeStep.call(this as this & TutoBoxType, step - 1);
         }
     }
 
@@ -204,8 +203,11 @@ class _TutoBox {
 
 }
 
-const TutoBox = (option: TutoBoxOptions) => {
-    const opts = merge(defaultOption, option)
+const TutoBox = ({ locales, extendsHelpers }: TutoBoxOptions={}) => {
+    const opts = {
+        locales: { ...defaultOption.locales, ...(locales||{}) },
+        extendsHelpers
+    } as TutoBoxOptions
     const tuto = new _TutoBox(opts);
     App(tuto.options, tuto);
     return tuto
