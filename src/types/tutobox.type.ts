@@ -20,7 +20,8 @@ export type TutoBoxType =
         currentTuto?: Tuto,
         currentStep?: number,
         isTourRunning?: boolean,
-        eventsCallbacks:EventsCallbacks
+        eventsCallbacks:EventsCallbacks,
+        isMounted:boolean,
 
         // internal API
         patchUpdate(): void,

@@ -17,6 +17,7 @@ import startTour from "./core/tour/startTour";
 import nextTour from "./core/tour/nextTour";
 import prevTour from "./core/tour/prevTour";
 import { EventData, EventType } from "./types/events.type";
+import sleep from "./utils/sleep";
 
 const defaultOption: TutoBoxOptions = {
     locales: {
@@ -38,6 +39,7 @@ class _TutoBox {
     options: TutoBoxOptions
     eventsCallbacks: EventsCallbacks = {}
     isTourRunning?: boolean
+    isMounted=false
 
     constructor(options: TutoBoxOptions) {
         this.options = options
@@ -115,6 +117,13 @@ class _TutoBox {
         }
     }
 
+    /**
+     * Wait for a few seconds until the views are mounted.
+     */
+    #checkIsMounted = async () =>{
+        if(!this.isMounted) await sleep()
+    }
+
     /** User API */
 
     addEventListener(eventName: EventType, callback: EventCallback) {
@@ -153,11 +162,13 @@ class _TutoBox {
     }
 
     /* Start an tutorial */
-    startTuto(...args: ArgumentsType<typeof startTuto>) {
+    async startTuto(...args: ArgumentsType<typeof startTuto>) {
+        await this.#checkIsMounted()
         startTuto.call(this as this & TutoBoxType, ...args);
     }
 
-    startTour(this: this & TutoBoxType) {
+    async startTour(this: this & TutoBoxType) {
+        await this.#checkIsMounted()
         startTour.call(this)
     }
 
