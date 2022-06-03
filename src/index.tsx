@@ -39,7 +39,7 @@ class _TutoBox {
     options: TutoBoxOptions
     eventsCallbacks: EventsCallbacks = {}
     isTourRunning?: boolean
-    isMounted=false
+    isMounted = false
 
     constructor(options: TutoBoxOptions) {
         this.options = options
@@ -120,14 +120,14 @@ class _TutoBox {
     /**
      * Wait for a few seconds until the views are mounted.
      */
-    #checkIsMounted = async () =>{
-        if(!this.isMounted) await sleep()
+    #checkIsMounted = async () => {
+        if (!this.isMounted) await sleep()
     }
 
     /** User API */
 
     addEventListener(eventName: EventType, callback: EventCallback) {
-        if(typeof callback !== "function"){
+        if (typeof callback !== "function") {
             throw new Error("The event listener callback must be a function.");
         }
         if (!this.eventsCallbacks[eventName]) {
@@ -217,14 +217,12 @@ class _TutoBox {
 
 }
 
-const TutoBox = ({ locales, extendsHelpers }: TutoBoxOptions={}) => {
-    const opts = {
-        locales: { ...defaultOption.locales, ...(locales||{}) },
-        extendsHelpers
-    } as TutoBoxOptions
-    const tuto = new _TutoBox(opts);
-    App(tuto.options, tuto);
-    return tuto
-};
+const TutoBox = (
+    () => {
+        const tuto = new _TutoBox(defaultOption);
+        App(tuto.options, tuto);
+        return tuto
+    }
+)();
 
 export default TutoBox;
