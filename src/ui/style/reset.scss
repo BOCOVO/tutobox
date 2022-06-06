@@ -20,7 +20,6 @@
     -o-tab-size: 4;
     tab-size: 4;
     background-color: white;
-    color: black;
 
     &-btn,
     button:not(.tbox-btn){
@@ -44,7 +43,6 @@
 
     button,
     input {
-        color: inherit;
         font-family: inherit;
         font-size: 100%;
         line-height: inherit;
