@@ -70,16 +70,14 @@ const tutobox = ({tutobox}:BoxPops) => {
     return (
         <div className=" ">
             <TooltipBox
-                title={currentStep.stepTitle}
-                des={currentStep.des}
-                html={currentStep.html}
+                {...currentStep}
+                headless={!!currentStep.headless}
                 prev={canPrev}
                 next={canNext}
                 nextStep={nextStep}
                 prevStep={prevStep}
                 isEnd={isEnd}
-                element={currentStep.element}
-                headless={!!currentStep.headless}
+
                 bubbles={bubblesData}
                 waitingForStep={waitingForStep}
                 stopTuto={stopTuto}
