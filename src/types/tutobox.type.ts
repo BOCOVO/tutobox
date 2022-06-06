@@ -36,10 +36,10 @@ export type TutoBoxType =
         removeEventListener(eventName: EventType, callback: EventCallback): void
 
         // user API
-        prev(): EventData | undefined,
-        next(): EventData | undefined,
-        stop(): EventData | undefined
-        goToStep(step: number): EventData | undefined
+        prev(): void,
+        next(): void,
+        stop(): void
+        goToStep(step: number): void
         startTuto(tutoName:string):void
         startTour():void
     }
