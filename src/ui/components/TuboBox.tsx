@@ -4,9 +4,9 @@ import { BubblesData, TutoStep } from "../../types/tuto.type";
 import { TutoBoxType } from "../../types/tutobox.type";
 import TooltipBox from "./TooltipBox";
 
-type BoxPops ={tutobox:TutoBoxType}
+type BoxPops = { tutobox: TutoBoxType }
 
-const tutobox = ({tutobox}:BoxPops) => {
+const tutobox = ({ tutobox }: BoxPops) => {
 
     const [canNext, setCanNext] = useState<boolean>(false);
     const [canPrev, setCanPrev] = useState<boolean>(false);
@@ -70,14 +70,16 @@ const tutobox = ({tutobox}:BoxPops) => {
     return (
         <div className=" ">
             <TooltipBox
-                {...currentStep}
+                title={currentStep.stepTitle}
+                des={currentStep.des}
+                html={currentStep.html}
+                element={currentStep.element}
                 headless={!!currentStep.headless}
                 prev={canPrev}
                 next={canNext}
                 nextStep={nextStep}
                 prevStep={prevStep}
                 isEnd={isEnd}
-
                 bubbles={bubblesData}
                 waitingForStep={waitingForStep}
                 stopTuto={stopTuto}
