@@ -3,17 +3,16 @@ import { NotRequiredAll } from "./utils.type"
 
 export type WaintingForStepDirection = "prev" | "next"
 type WaitingEvent = "start-waiting" | "stop-waiting"
-type BeforeEvent = "before-start-tuto" | "before-stop-tuto"
 
 type TutoNavigationEvents =
-    | "start-tuto"
+    | "on-start-tuto"
     | "step-change"
     | "prev-step"
     | "next-step"
-    | "stop-tuto"
+    | "on-stop-tuto"
     | "option-change"
 
-export type EventType = WaitingEvent | BeforeEvent |TutoNavigationEvents
+export type EventType = WaitingEvent |TutoNavigationEvents 
 
 
 

@@ -4,7 +4,6 @@ import { TutoBoxOptions } from "../../types/tuto.type"
 import { TutoBoxType } from "../../types/tutobox.type"
 import LocaleContext from "../contexts/LocaleContext"
 import HelpBox from "./HelpBox/HelpBox"
-import tutobox from "./TuboBox"
 import TutoBox from "./TuboBox"
 
 const Main = (options: TutoBoxOptions & { tutobox: TutoBoxType }) => {
