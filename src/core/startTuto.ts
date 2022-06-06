@@ -11,6 +11,10 @@ import retrieveTuto from "./retriveTuto";
  */
 
 function startTuto(this: TutoBoxType, tutoName: string): boolean {
+    // check if tutoName is string
+    if(typeof tutoName !== "string"){
+        throw new Error("The method startTuto must take a string.")
+    }
     // fetch tuto
     const tuto = retrieveTuto(tutoName, this.options.extendsHelpers)
     if (!tuto) return false
