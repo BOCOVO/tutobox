@@ -13,7 +13,7 @@
     --tw-content: ""
 }
 
-tbox {
+.tbox {
     -webkit-text-size-adjust: 100%;
     line-height: 1.5;
     -moz-tab-size: 4;
@@ -21,6 +21,16 @@ tbox {
     tab-size: 4;
     background-color: white;
     color: black;
+
+    &-btn,
+    button:not(.tbox-btn){
+        background-color: transparent;
+    }
+    
+    button{
+        text-transform: none;
+        border: none;
+    }
 
     h1,
     h2,
@@ -33,30 +43,16 @@ tbox {
     }
 
     button,
-    input,
-    optgroup,
-    select,
-    textarea {
+    input {
         color: inherit;
         font-family: inherit;
         font-size: 100%;
         line-height: inherit;
-        margin: 0;
-        padding: 0
     }
 
     button,
     select {
         text-transform: none
-    }
-
-    [type=button],
-    [type=reset],
-    [type=submit],
-    button {
-        -webkit-appearance: button;
-        background-color: transparent;
-        background-image: none
     }
 
     [type=search] {
@@ -79,25 +75,7 @@ tbox {
         margin: 0;
         padding: 0
     }
-
-    textarea {
-        resize: vertical
-    }
-
-    input::-moz-placeholder,
-    textarea::-moz-placeholder {
-        color: #9ca3af;
-        opacity: 1
-    }
-
-    input:-ms-input-placeholder,
-    textarea:-ms-input-placeholder {
-        color: #9ca3af;
-        opacity: 1
-    }
-
-    input::placeholder,
-    textarea::placeholder {
+    input::-moz-placeholder,input:-ms-input-placeholder,input::placeholder {
         color: #9ca3af;
         opacity: 1
     }
@@ -105,12 +83,6 @@ tbox {
     [role=button],
     button {
         cursor: pointer
-    }
-
-    img,
-    video {
-        height: auto;
-        max-width: 100%
     }
 
     [hidden] {

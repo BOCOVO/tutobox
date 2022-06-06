@@ -4,10 +4,9 @@
     --tbox-text-white: white;
     --tbox-very-light-primary: rgb(238, 239, 252);
 }
-
+@import "reset.scss";
 @tailwind utilities;
 @tailwind components;
-@import "reset.scss";
 
 .tbox {
     z-index: 10000;
