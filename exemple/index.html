@@ -161,9 +161,14 @@
         window.addEventListener("tuto-box:step-change", function (e) {
             //console.log(e)
         })
-        const tuto = TutoBox({
+        /*
+        {
             locale: { close: "Fermer" },
-            extendsHelpers: [
+            extendsHelpers:
+        }
+        */
+        setTimeout(() => {
+            TutoBox.setExtendsHelpers( [
                 {
                     title: "The first tutorial",
                     tutoName: "starter",
@@ -179,10 +184,8 @@
                     tutoName: "child1",
                     extendsTuto: "parent"
                 }
-            ]
-        })
-        setTimeout(() => {
-            //tuto.startTuto("starter") 
+            ])
+            TutoBox.startTuto("starter") 
         }, 1000);
     </script>
 </body>

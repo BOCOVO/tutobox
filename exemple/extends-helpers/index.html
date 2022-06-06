@@ -58,8 +58,7 @@
     </div>
     <script type="text/javascript" src="../../dist/minified/index.min.js"></script>
     <script>
-        const tuto = TutoBox({
-            extendsHelpers: [
+        TutoBox.setExtendsHelpers([
                 {
                     title: "The first tutorial",
                     tutoName: "tuto-1",
@@ -71,15 +70,14 @@
                     tutoName: "tuto-2",
                     extendsTuto: "main-tuto"
                 }
-            ]
-        })
+            ])
         // start tuto 1 callbsck
         const startFirstTuto = () => {
-            tuto.startTuto("tuto-1")
+            TutoBox.startTuto("tuto-1")
         }
         // start tuto 2 callbsck
         const startSecondTuto = () => {
-            tuto.startTuto("tuto-2")
+            TutoBox.startTuto("tuto-2")
         }
 
         // start buttons

@@ -52,12 +52,11 @@
     <script>
 
         const btn = document.getElementById("start")
-        const tuto = TutoBox()
         const start = () => {
-            tuto.startTour()
+            TutoBox.startTour()
             // change local
             setTimeout(() => {
-                tuto.setLocales({
+                TutoBox.setLocales({
                     next: "Suiv.",
                     prev: "Prec.",
                     finish: "Terminer"
