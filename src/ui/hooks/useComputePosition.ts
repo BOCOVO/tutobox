@@ -1,6 +1,7 @@
 import { computePosition, autoPlacement, shift, offset } from '@floating-ui/dom';
 import { useCallback, useEffect, useRef, useState } from 'preact/hooks';
 import { Placement } from '../../types/utils.type';
+import elementInViewport from '../../utils/elementInViewport';
 
 type ComputePositionReturn = {
     x: number,
@@ -32,8 +33,10 @@ const useComputePosition = <T extends HTMLElement>(element: HTMLElement) => {
 
     const update = useCallback(() => {
         if (tooltipRef?.current) {
-            //scroll to element
-            element.scrollIntoView()
+            //scroll to element if not in viewport
+            if (!elementInViewport(element)) {
+                element.scrollIntoView()
+            }
             const highlighterData = {} as HighlighterDataType
 
             const sethighlighterData = (data: HighlighterDataType) => {
@@ -48,7 +51,7 @@ const useComputePosition = <T extends HTMLElement>(element: HTMLElement) => {
                     autoPlacement(
                         {
                             allowedPlacements: ['top', 'bottom', "left", "right"],
-                            
+
                         }),
                 ]
             }).then((compute) => {
@@ -59,12 +62,12 @@ const useComputePosition = <T extends HTMLElement>(element: HTMLElement) => {
     }, [element])
 
     useEffect(() => {
-      window.addEventListener("resize", update)
-      return () => {
-          window.removeEventListener("resize", update)
-      }
+        window.addEventListener("resize", update)
+        return () => {
+            window.removeEventListener("resize", update)
+        }
     }, [update])
-    
+
 
     return { computePos, tooltipRef, update }
 }
