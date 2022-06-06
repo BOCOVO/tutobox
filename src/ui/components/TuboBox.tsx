@@ -47,7 +47,7 @@ const tutobox = ({tutobox}:BoxPops) => {
     }, [])
 
     const stopTuto = () => {
-        tutobox.stopTuto()
+        tutobox.stop()
         setCurrentStep(null)
         setCanNext(false)
         setCanPrev(false)

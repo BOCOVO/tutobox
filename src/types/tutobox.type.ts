@@ -38,7 +38,7 @@ export type TutoBoxType =
         // user API
         prev(): EventData | undefined,
         next(): EventData | undefined,
-        stopTuto(): EventData | undefined
+        stop(): EventData | undefined
         goToStep(step: number): EventData | undefined
         startTuto(tutoName:string):void
         startTour():void

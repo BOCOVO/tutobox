@@ -172,7 +172,7 @@ class _TutoBox {
         startTour.call(this)
     }
 
-    stopTuto() {
+    stop() {
         stopTuto.call(this as this & TutoBoxType)
     }
 

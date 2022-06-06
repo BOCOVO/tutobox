@@ -74,7 +74,7 @@ function changeStep(this: TutoBoxType, stepIndex: number, prev: boolean = false)
             !isDynamicTuto
             || (this.currentTuto.steps[this.currentStep].step === "end")
         ) {
-            this.stopTuto()
+            this.stop()
         } else if (isDynamicTuto) {
             // start waiting for next step
             this.startWaitingForNextStep(
