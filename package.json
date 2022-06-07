@@ -15,7 +15,7 @@
     "TutoBox",
     "tutobox"
   ],
-  "main": "index.js",
+  "main": "./dist/index.min.js",
   "scripts": {
     "test": "jest",
     "build": "rollup -c",

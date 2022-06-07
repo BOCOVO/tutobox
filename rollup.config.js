@@ -59,9 +59,9 @@ const jsPlugins = [
 
 export default [
   {
-    input: `${inputPath}/index.tsx`,
+    input: `${inputPath}/index.ts`,
     output: {
-      file: `${outputPath}/index.min.js')}`,
+      file: `${outputPath}/index.min.js`,
       banner,
       format: 'umd',
       name: 'TutoBox',
