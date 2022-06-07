@@ -1,3 +1,4 @@
 # only upload dist on npm
 *
 !dist/*
+!screenshot.png
