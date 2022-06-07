@@ -3,6 +3,14 @@
   "version": "0.0.1",
   "description": "User Onboarding and Product Walkthrough Library",
   "author": "Juste Bocovo",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BOCOVO/tutobox.git"
+  },
+  "bugs": {
+    "url": "https://github.com/BOCOVO/tutobox/issues"
+  },
+  "homepage": "https://bocovo.github.io/tutobox-site/",
   "keywords": [
     "onboarding",
     "tour",
