@@ -61,7 +61,7 @@ export default [
   {
     input: `${inputPath}/index.tsx`,
     output: {
-      file: `${outputPath}/minified/${pkg.main.replace(/\.js$/, '.min.js')}`,
+      file: `${outputPath}/index.min.js')}`,
       banner,
       format: 'umd',
       name: 'TutoBox',
@@ -74,7 +74,7 @@ export default [
   {
     input: `${inputPath}/ui/style/index.scss`,
     output: {
-      file: `${outputPath}/minified/index.min.css`,
+      file: `${outputPath}/index.min.css`,
       format: 'es'
     },
     plugins: [
