@@ -27,9 +27,9 @@ const HelpBox = ({ extendsHelpers,tutobox }: HelpBoxProps) => {
     useEffect(() => {
         // automaticaly close helpbox 
         // when a tuto is started
-        tutobox.addEventListener("on-start-tuto", autoClose)
+        tutobox.addEventListener("start-tuto", autoClose)
         return () => {
-            tutobox.removeEventListener("on-start-tuto", autoClose)
+            tutobox.removeEventListener("start-tuto", autoClose)
         }
     }, [autoClose])
 

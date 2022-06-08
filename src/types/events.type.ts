@@ -5,9 +5,9 @@ export type WaintingForStepDirection = "prev" | "next"
 type WaitingEvent = "start-waiting" | "stop-waiting"
 
 type TutoNavigationEvents =
-    | "on-start-tuto"
+    | "start-tuto"
     | "step-change"
-    | "on-stop-tuto"
+    | "stop-tuto"
     | "option-change"
 
 export type EventType = WaitingEvent |TutoNavigationEvents 

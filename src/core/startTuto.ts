@@ -28,7 +28,7 @@ function startTuto(this: TutoBoxType, tutoName: string): boolean {
     if(tuto.dynamic){
         this.createObserver()
     } 
-    this.runCallback("on-start-tuto", eventData)
+    this.runCallback("start-tuto", eventData)
     this.next()
     return true
 }

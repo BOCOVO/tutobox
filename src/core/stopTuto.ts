@@ -25,7 +25,7 @@ function stopTuto(this: TutoBoxType){
         delete this.currentObserver
     }
 
-    this.runCallback("on-stop-tuto",{
+    this.runCallback("stop-tuto",{
         tutoName
     })
 }
