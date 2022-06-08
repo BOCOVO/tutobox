@@ -30,7 +30,7 @@ function startTour (this: TutoBoxType):void{
         this.currentTuto = tuto
         this.currentStep = 0
         this.isTourRunning = true
-        onStep(this.currentTuto,this.currentStep,this.runCallback)
+        onStep(this.currentTuto,this.currentStep,this._runCallback)
     }
 }
 

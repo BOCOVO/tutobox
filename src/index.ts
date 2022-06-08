@@ -46,21 +46,21 @@ class _TutoBox {
         this.options = options
     }
 
-    actionNextStep = () => {
+    _actionNextStep = () => {
         (this as this & TutoBoxType).next()
     }
 
-    cleanActionListener(this: this & TutoBoxType) {
+    _cleanActionListener(this: this & TutoBoxType) {
         cleanActionListener.call(this)
     }
 
-    checkStartedTuto(this: this & TutoBoxType) {
+    _checkStartedTuto(this: this & TutoBoxType) {
         if (!this.currentTuto || this.currentStep === undefined) {
             throw new Error("No tuto or tour was started. Make sure you call TutoBox.startTuto() with the name of desired tuto before call TutoBox.nextStep() or TutoBox.prevStep() method.")
         }
     }
 
-    runCallback = (eventName: EventType, eventData: EventData | TutoBoxOptions) => {
+    _runCallback = (eventName: EventType, eventData: EventData | TutoBoxOptions) => {
         if (this.eventsCallbacks[eventName]) {
             this.eventsCallbacks[eventName]?.forEach(callback => {
                 try {
@@ -79,19 +79,19 @@ class _TutoBox {
         observerCallback.call(this, ...args)
     }
 
-    patchUpdate() {
+    _patchUpdate() {
         patchUpdate.call(this as this & TutoBoxType)
     }
 
-    createObserver(this: this & TutoBoxType) {
+    _createObserver(this: this & TutoBoxType) {
         createObserver.call(this, this.#observerCallback.bind(this))
     }
 
-    startWaitingForNextStep(...args: ArgumentsType<typeof startWaitingForNextStep>) {
+    _startWaitingForNextStep(...args: ArgumentsType<typeof startWaitingForNextStep>) {
         startWaitingForNextStep.call(this as this & TutoBoxType, ...args)
     }
 
-    handleWaitingForStep() {
+    _handleWaitingForStep() {
         handleWaitingForStep.call(this as this & TutoBoxType)
     }
 
@@ -178,7 +178,7 @@ class _TutoBox {
     }
 
     next(this: this & TutoBoxType) {
-        this.checkStartedTuto()
+        this._checkStartedTuto()
         if (this.isTourRunning) {
             this.#nextTour()
         } else {
@@ -187,7 +187,7 @@ class _TutoBox {
     }
 
     prev(this: this & TutoBoxType) {
-        this.checkStartedTuto()
+        this._checkStartedTuto()
         if (this.isTourRunning) {
             this.#prevTour()
         } else {
@@ -204,7 +204,7 @@ class _TutoBox {
         const newLocale = { ...this.options.locales, ...locales }
         this.options.locales = newLocale
         await this.#checkIsMounted()
-        this.runCallback("option-change", { locales: newLocale })
+        this._runCallback("option-change", { locales: newLocale })
     }
 
     /**
@@ -215,7 +215,7 @@ class _TutoBox {
     async setExtendsHelpers(extendsHelpers: ExtendsHelper[]) {
         this.options.extendsHelpers = extendsHelpers
         await this.#checkIsMounted()
-        this.runCallback("option-change", { extendsHelpers: extendsHelpers })
+        this._runCallback("option-change", { extendsHelpers: extendsHelpers })
     }
 
 

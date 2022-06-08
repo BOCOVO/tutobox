@@ -17,9 +17,9 @@ function observerCallback(this: TutoBoxType, mutations: MutationRecord[]) {
         const elementTutos = !!getAttr(node, "data-tuto") || !!node.querySelector("[data-tuto]")
         if (elementTutos) {
             // update tuto list
-            this.patchUpdate()
+            this._patchUpdate()
             // handle step waiting
-            this.handleWaitingForStep()
+            this._handleWaitingForStep()
         }
     }
 
@@ -37,7 +37,7 @@ function observerCallback(this: TutoBoxType, mutations: MutationRecord[]) {
                     && step.actionSelector
                     && addedNode.matches(step.actionSelector)
                 ) {
-                    addActionListener(this.actionNextStep, step.action, addedNode)
+                    addActionListener(this._actionNextStep, step.action, addedNode)
                 }
             }
         }

@@ -13,7 +13,7 @@ function stopTuto(this: TutoBoxType){
     }
     const tutoName = this.currentTuto.name
 
-    if(!this.isTourRunning)this.cleanActionListener()
+    if(!this.isTourRunning)this._cleanActionListener()
    
     // delete ressourses
     delete this.currentTuto
@@ -25,7 +25,7 @@ function stopTuto(this: TutoBoxType){
         delete this.currentObserver
     }
 
-    this.runCallback("stop-tuto",{
+    this._runCallback("stop-tuto",{
         tutoName
     })
 }

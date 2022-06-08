@@ -13,10 +13,10 @@ import onStep from "./onStep";
  */
 function changeStep(this: TutoBoxType, stepIndex: number, prev: boolean = false): void {
     // check if startTuto was called
-    this.checkStartedTuto()
+    this._checkStartedTuto()
     if (this.currentTuto && this.currentStep !== undefined) { // unnecessary verification in done in checkStartedTuto
         // clean old listener
-        this.cleanActionListener()
+        this._cleanActionListener()
 
         const isDynamicTuto = this.currentTuto.dynamic
 
@@ -37,7 +37,7 @@ function changeStep(this: TutoBoxType, stepIndex: number, prev: boolean = false)
             if (isDynamicTuto && !ordered) {
                 // wait for next step to be available
                 // const intendedStep = Number(step.step) - 1
-                this.startWaitingForNextStep(
+                this._startWaitingForNextStep(
                     {
                         runningTuto: this.currentTuto.name,
                         // tutoName: step.tuto,
@@ -51,7 +51,7 @@ function changeStep(this: TutoBoxType, stepIndex: number, prev: boolean = false)
                 if (this.isWaitingForStep) {
                     // remove isWaitingForStep if it exist
                     delete this.isWaitingForStep
-                    this.runCallback("stop-waiting")
+                    this._runCallback("stop-waiting")
                 }
                 this.currentStep = stepIndex
                 let bubbles: BubblesData | undefined
@@ -62,9 +62,9 @@ function changeStep(this: TutoBoxType, stepIndex: number, prev: boolean = false)
                         active: stepIndex
                     }
                 }
-                onStep(this.currentTuto, stepIndex,this.runCallback , bubbles)
+                onStep(this.currentTuto, stepIndex,this._runCallback , bubbles)
                 // handle action listener on element
-                addActionListenerAll(this.actionNextStep, step)
+                addActionListenerAll(this._actionNextStep, step)
             }
         }
         // stop tutorial if is non-dynamic tuto
@@ -77,7 +77,7 @@ function changeStep(this: TutoBoxType, stepIndex: number, prev: boolean = false)
             this.stop()
         } else if (isDynamicTuto) {
             // start waiting for next step
-            this.startWaitingForNextStep(
+            this._startWaitingForNextStep(
                 {
                     runningTuto: this.currentTuto.name,
                     direction: prev ? "prev" : "next"

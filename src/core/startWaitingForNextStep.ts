@@ -24,6 +24,6 @@ function startWaitingForNextStep(
         tuto: runningTuto,
         direction: direction
     }
-    this.runCallback("start-waiting")
+    this._runCallback("start-waiting")
 }
 export default startWaitingForNextStep

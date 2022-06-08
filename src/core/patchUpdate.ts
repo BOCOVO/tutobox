@@ -48,7 +48,7 @@ function patchUpdate(this: TutoBoxType) {
                 // update step index
                 this.currentStep = stepIndexInNewData
             }
-            refreshStep(this.currentTuto, this.currentStep,this.runCallback)
+            refreshStep(this.currentTuto, this.currentStep,this._runCallback)
         } else {
             // TODO : log warning
         }

@@ -26,9 +26,9 @@ function startTuto(this: TutoBoxType, tutoName: string): boolean {
     this.currentStep = -1
     //check if it is dynamic tuto
     if(tuto.dynamic){
-        this.createObserver()
+        this._createObserver()
     } 
-    this.runCallback("start-tuto", eventData)
+    this._runCallback("start-tuto", eventData)
     this.next()
     return true
 }

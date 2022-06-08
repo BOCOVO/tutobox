@@ -6,20 +6,20 @@ import querySelectorAll from "../utils/querySelectorAll";
  * to handle `action` and `actionSlector` of the last step
  */
 function cleanActionListener(this: TutoBoxType) {
-    this.checkStartedTuto()
+    this._checkStartedTuto()
     if (this.currentTuto && this.currentStep !== undefined) { // unnecessary verification in done in checkStartedTuto
         const step = this.currentTuto.steps[this.currentStep]
         if (!step) return // step not found
         if (step.action) {
             if (!step.actionSelector) {
                 // action on same element
-                step.element.removeEventListener<any>(step.action, this.actionNextStep)
+                step.element.removeEventListener<any>(step.action, this._actionNextStep)
             } else {
                 const nodes: NodeListOf<Element> | null =
                     querySelectorAll(step.actionSelector, step.element)
                 if (nodes) {
                     nodes.forEach(node => {
-                        node.removeEventListener<any>(step.action, this.actionNextStep)
+                        node.removeEventListener<any>(step.action, this._actionNextStep)
                     })
                 }
             }
