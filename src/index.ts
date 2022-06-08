@@ -18,6 +18,7 @@ import nextTour from "./core/tour/nextTour";
 import prevTour from "./core/tour/prevTour";
 import { EventData, EventType } from "./types/events.type";
 import sleep from "./utils/sleep";
+import { AUTO_HELP_TUTO_NAME } from "./constances";
 
 const defaultOption: TutoBoxOptions = {
     locales: {
@@ -199,9 +200,10 @@ class _TutoBox {
      * 
      * @param locales 
      */
-    setLocales(locales: Locales) {
+    async setLocales(locales: Locales) {
         const newLocale = { ...this.options.locales, ...locales }
         this.options.locales = newLocale
+        await this.#checkIsMounted()
         this.runCallback("option-change", { locales: newLocale })
     }
 
@@ -210,9 +212,22 @@ class _TutoBox {
     * 
     * @param locales 
     */
-    setExtendsHelpers(extendsHelpers: ExtendsHelper[]) {
+    async setExtendsHelpers(extendsHelpers: ExtendsHelper[]) {
         this.options.extendsHelpers = extendsHelpers
+        await this.#checkIsMounted()
         this.runCallback("option-change", { extendsHelpers: extendsHelpers })
+    }
+
+
+    /**
+    * Run auto help tutorial
+    * 
+    */
+    async runAutoHelp() {
+        if (this.options.extendsHelpers?.length) {
+            await this.#checkIsMounted()
+            this.startTuto(AUTO_HELP_TUTO_NAME)
+        }
     }
 
 }

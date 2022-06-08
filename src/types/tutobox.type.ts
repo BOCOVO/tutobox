@@ -1,5 +1,7 @@
 import startWaitingForNextStep from "../core/startWaitingForNextStep"
 import { EventData, EventType , WaintingForStepDirection } from "./events.type"
+import { ExtendsHelper } from "./extendsHelper.type"
+import { Locales } from "./locale.type"
 import Tuto, { TutoBoxOptions } from "./tuto.type"
 
 type WaitingForStepProps = {
@@ -38,8 +40,11 @@ export type TutoBoxType =
         // user API
         prev(): void,
         next(): void,
-        stop(): void
-        goToStep(step: number): void
-        startTuto(tutoName:string):void
-        startTour():void
+        stop(): void,
+        goToStep(step: number): void,
+        startTuto(tutoName:string):Promise<void>,
+        startTour():Promise<void>,
+        setExtendsHelpers(extendsHelpers: ExtendsHelper[]):Promise<void>,
+        setLocales(locales: Locales):Promise<void>, 
+        runAutoHelp():Promise<void>, 
     }
