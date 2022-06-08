@@ -63,7 +63,7 @@ function _retrieveTuto(tutoName: string, extendsHelpers: ExtendsHelper[], parent
     let parentTuto: Tuto | false = false
     const extendsHelper = extendsHelpers?.find(item => item.tutoName === tutoName)
 
-    if (extendsHelper) {
+    if (extendsHelper && extendsHelper.extendsTuto) {
         parentTuto = _retrieveTuto(extendsHelper.extendsTuto, extendsHelpers, true)
     }
 

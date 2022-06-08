@@ -4,7 +4,7 @@
  */
 export type ExtendsHelper = {
     title?:string,
-    extendsTuto:string,
+    extendsTuto?:string,
     tutoName:string,
     keywords?:string[]
 }
