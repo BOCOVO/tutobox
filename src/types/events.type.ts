@@ -7,8 +7,6 @@ type WaitingEvent = "start-waiting" | "stop-waiting"
 type TutoNavigationEvents =
     | "on-start-tuto"
     | "step-change"
-    | "prev-step"
-    | "next-step"
     | "on-stop-tuto"
     | "option-change"
 
