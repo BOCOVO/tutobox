@@ -20,7 +20,6 @@ export type EventData = {
     stepData?: TutoStep,
     next?: boolean,
     prev?: boolean,
-    headless?: boolean,
     end?: boolean,
     bubbles?: BubblesData
 }
