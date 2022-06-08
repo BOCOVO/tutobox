@@ -33,7 +33,7 @@ export type TutoBoxType =
         runCallback(callbackName: EventType, data?: EventData|TutoBoxOptions): void,
         handleWaitingForStep(): void
         addEventListener(eventName: EventType, callback: EventCallback): void
-        removeEventListener(eventName: EventType, callback: EventCallback): void
+        removeEventListener(eventName: EventType, callback: EventCallback): boolean
 
         // user API
         prev(): void,
