@@ -9,7 +9,6 @@ export type TutoStep = {
     element: HTMLElement,
     stepTitle?: string,
     tuto: string,
-    tutoTitle?: string,
     headless?: string,
     dynamic?: boolean,
     action?: string,
@@ -44,8 +43,7 @@ type Tuto = {
  */
 
 export type HTMLTutoAttr =
-    "data-tuto-title"
-    | "data-step"
+    "data-step"
     | "data-tuto"
     | "data-step-html"
     | "data-step-title"

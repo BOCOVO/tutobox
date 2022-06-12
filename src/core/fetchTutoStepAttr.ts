@@ -19,7 +19,6 @@ const fetchTutoboxAttr = (element: HTMLElement) => {
         html: getAttr(element,"data-step-html"),
         tuto: getAttr(element,"data-tuto"),
         step: getAttr(element,"data-step"),
-        tutoTitle: getAttr(element,"data-tuto-title"),
         action: getAttr(element,"data-step-action"),
         actionSelector: getAttr(element,"data-action-selector"),
         headless: getAttr(element,"data-headless-step"),

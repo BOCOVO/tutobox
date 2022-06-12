@@ -32,7 +32,6 @@ function patchUpdate(this: TutoBoxType) {
                         && step.tuto === currentStepData.tuto
                         && step.html === currentStepData.html
                         && step.des === currentStepData.des
-                        && step.tutoTitle === currentStepData.tutoTitle
                 })
 
             // update tuto
