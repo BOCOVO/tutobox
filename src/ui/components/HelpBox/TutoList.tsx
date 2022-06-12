@@ -18,7 +18,7 @@ const TutoList = ({ tutos, onStartTuto }: TutoListProps) => {
                     <ul
                         // auto help tuto attribute
                         data-tuto={AUTO_HELP_TUTO_NAME}
-                        data-step-title={locale.htSelectTuto}
+                        data-step-title={locale.autoHelpSelect}
                         data-step="end"
                         className=" tbox-tuto-list tbox-py-2 tbox-px-3">
                         {

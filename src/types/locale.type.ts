@@ -7,6 +7,6 @@ export type Locales = {
     howToFind:string,
     emptySearch:string,
     finish:string,
-    htButton:string,
-    htSelectTuto:string,
+    autoHelpButton:string,
+    autoHelpSelect:string,
 }

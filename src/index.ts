@@ -30,8 +30,8 @@ const defaultOption: TutoBoxOptions = {
         searchPlaceholder: "Tape keyword here.",
         emptySearch: "No result found.",
         finish: "Finish",
-        htButton: "Button",
-        htSelectTuto: "Select"
+        autoHelpButton: "Click here to see the list of available tutorials.",
+        autoHelpSelect: "Select the tutorial you are looking for"
     },
 }
 

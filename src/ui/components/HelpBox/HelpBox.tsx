@@ -67,7 +67,7 @@ const HelpBox = ({ extendsHelpers,tutobox }: HelpBoxProps) => {
                         // auto help tuto attribute
                         data-dynamic-steps="true"
                         data-tuto={AUTO_HELP_TUTO_NAME}
-                        data-step-title={locale.htButton}
+                        data-step-title={locale.autoHelpButton}
                         data-step-action="click"
                         data-step="1"
 
