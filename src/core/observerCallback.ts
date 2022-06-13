@@ -1,5 +1,5 @@
+import Tuto from "../types/tuto.type";
 import { TutoBoxType } from "../types/tutobox.type";
-import getAttr from "../utils/getAttr";
 import addActionListener from "./addActionListener";
 
 /**
@@ -11,11 +11,11 @@ import addActionListener from "./addActionListener";
  * @param observer 
  */
 function observerCallback(this: TutoBoxType, mutations: MutationRecord[]) {
-    
+
     // created to avoid some repeatition
-    const applyUpdate = (node:HTMLElement) => {
-        const elementTutos = !!getAttr(node, "data-tuto") || !!node.querySelector("[data-tuto]")
-        if (elementTutos) {
+    const applyUpdate = (node: HTMLElement) => {
+            const hasStep = !!node.matches("[data-tuto],[data-step-title],[data-step-des],[data-step-html]") || !!node.querySelector("[data-tuto]")
+            if (hasStep) {
             // update tuto list
             this._patchUpdate()
             // handle step waiting
@@ -24,20 +24,23 @@ function observerCallback(this: TutoBoxType, mutations: MutationRecord[]) {
     }
 
     for (let mutation of mutations) {
-        for (let addedNode of mutation.addedNodes) {
-            if (!(addedNode instanceof HTMLElement)) continue;
-            if (this.currentTuto
-                && (this.currentStep !== undefined)
-            ) {
-                applyUpdate(addedNode)
-                // check if the current step has action and actionSelector
-                // then add listener if the added element matches the selector
-                const step = this.currentTuto.steps[this.currentStep]
-                if (step.action
-                    && step.actionSelector
-                    && addedNode.matches(step.actionSelector)
+        // observe add only if the tutorial is dynamic
+        if ((this.currentTuto as Tuto).dynamic) {
+            for (let addedNode of mutation.addedNodes) {
+                if (!(addedNode instanceof HTMLElement)) continue;
+                if (this.currentTuto
+                    && (this.currentStep !== undefined)
                 ) {
-                    addActionListener(this._actionNextStep, step.action, addedNode)
+                    applyUpdate(addedNode)
+                    // check if the current step has action and actionSelector
+                    // then add listener if the added element matches the selector
+                    const step = this.currentTuto.steps[this.currentStep]
+                    if (step.action
+                        && step.actionSelector
+                        && addedNode.matches(step.actionSelector)
+                    ) {
+                        addActionListener(this._actionNextStep, step.action, addedNode)
+                    }
                 }
             }
         }

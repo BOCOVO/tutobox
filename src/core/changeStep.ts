@@ -45,8 +45,7 @@ function changeStep(this: TutoBoxType, stepIndex: number, prev: boolean = false)
                         direction: prev ? "prev" : "next"
                     }
                 )
-            }
-            else {
+            } else {
                 // check for waiting step
                 if (this.isWaitingForStep) {
                     // remove isWaitingForStep if it exist

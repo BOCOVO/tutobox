@@ -1,7 +1,7 @@
 import changeStep from "./core/changeStep";
 import startTuto from "./core/startTuto";
 import stopTuto from "./core/stopTuto";
-import { TutoBoxOptions } from "./types/tuto.type";
+import { TutoBoxOptions} from "./types/tuto.type";
 import { EventCallback, EventsCallbacks, TutoBoxType } from "./types/tutobox.type";
 import { ArgumentsType } from "./types/utils.type";
 import App from "./ui/components";
@@ -19,6 +19,7 @@ import prevTour from "./core/tour/prevTour";
 import { EventData, EventType } from "./types/events.type";
 import sleep from "./utils/sleep";
 import { AUTO_HELP_TUTO_NAME } from "./constances";
+import handleAccidentalRemove from "./core/handleAccidentalRemove";
 
 const defaultOption: TutoBoxOptions = {
     locales: {
@@ -95,6 +96,10 @@ class _TutoBox {
         handleWaitingForStep.call(this as this & TutoBoxType)
     }
 
+    _handleAccidentalRemove() {
+        handleAccidentalRemove.call(this as this & TutoBoxType)
+    }
+
     /* Navigation methods */
     #nextTour() {
         nextTour.call(this as this & TutoBoxType)
@@ -157,7 +162,7 @@ class _TutoBox {
     goToStep = (step: number) => {
         if (step < 1) {
             console.error(`The value ${step} is invalid as step number. The steps are numbered from 1.`)
-        } else {
+        } else if((this as this & TutoBoxType).currentStep === step-1){
             changeStep.call(this as this & TutoBoxType, step - 1);
         }
     }

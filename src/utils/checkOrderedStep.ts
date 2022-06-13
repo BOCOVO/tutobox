@@ -3,10 +3,10 @@ import { TutoStep } from "../types/tuto.type"
 /**
  * 
  * @param param0 {
- *   step: data of step to show,
- *   currentStep: current step data,
- *   isDynamicTuto: flag for dynamic tuto,
- *   prev: if it is previous action
+ *   `step` data of step to show,
+ *   `currentStep` current step data,
+ *   `isDynamicTuto` flag for dynamic tuto,
+ *   `prev` if it is previous action
  * }
  * @returns 
  */

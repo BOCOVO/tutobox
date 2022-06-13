@@ -1,6 +1,9 @@
+import { TutoStep } from "../types/tuto.type";
 import { TutoBoxType } from "../types/tutobox.type";
+import sortStep from "../utils/sortStep";
 import refreshStep from "./refreshStep";
-import retrieveTuto from "./retriveTuto";
+import { retrieveTutoNoError } from "./retriveTuto";
+import retrieveTour from "./tour/retrieveTour";
 
 /**
  * Places a step in the step list of the
@@ -21,21 +24,33 @@ function patchUpdate(this: TutoBoxType) {
         // can be expensive
 
         // get updated tuto data
-        const tuto = retrieveTuto(tutoName, this.options.extendsHelpers)
-        if (tuto) {
+        const refreshedTuto = (this.isTourRunning
+            ? retrieveTour()
+            : retrieveTutoNoError(tutoName, this.options.extendsHelpers))
+        if (refreshedTuto) {
+
+            const merge = [...refreshedTuto.steps,...this.currentTuto.steps]
+            // remove double
+            let filteredSorted = merge.filter(
+                (currentStep, currentStepIndex) => {
+                    const indexInList = merge.findIndex(
+                        (findIndexStep) =>isSameStep(findIndexStep,currentStep)
+                    )
+                    return indexInList === currentStepIndex
+                }
+            )
+            filteredSorted = sortStep(filteredSorted,this.currentTuto.name)
+            
+            refreshedTuto.steps = filteredSorted
+            
             const stepIndexInNewData = !currentStepData
                 ? -1 // if currentStepData is falsy dont need to to find the step index
-                : tuto.steps.findIndex(step => {
+                : refreshedTuto.steps.findIndex(step => isSameStep(step, currentStepData))
 
-                    return step.stepTitle === currentStepData.stepTitle
-                        && step.step === currentStepData.step
-                        && step.tuto === currentStepData.tuto
-                        && step.html === currentStepData.html
-                        && step.des === currentStepData.des
-                })
-
+            // used to handle accidental remove
+            refreshedTuto.dynamic = this.currentTuto.dynamic
             // update tuto
-            this.currentTuto = tuto
+            this.currentTuto = refreshedTuto
             if (~stepIndexInNewData
                 // Maybe while running this function 
                 // the user moved to another step.
@@ -47,11 +62,27 @@ function patchUpdate(this: TutoBoxType) {
                 // update step index
                 this.currentStep = stepIndexInNewData
             }
-            refreshStep(this.currentTuto, this.currentStep,this._runCallback)
+
+            if (stepIndexInNewData === -1 || !this.currentTuto.steps[this.currentStep].element.isConnected) {
+                this._handleAccidentalRemove()
+            } else {
+                // refresh only if the element is still in DOM
+                refreshStep(this.currentTuto, this.currentStep, this._runCallback)
+            }
         } else {
             // TODO : log warning
         }
     }
+}
+
+const isSameStep = (first: TutoStep, second: TutoStep) => {
+    return (
+        first.stepTitle === second.stepTitle
+        && first.step === second.step
+        && first.tuto === second.tuto
+        && first.html === second.html
+        && first.des === second.des
+    )
 }
 
 export default patchUpdate

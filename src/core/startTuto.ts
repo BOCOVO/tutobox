@@ -12,7 +12,7 @@ import retrieveTuto from "./retriveTuto";
 
 function startTuto(this: TutoBoxType, tutoName: string): boolean {
     // check if tutoName is string
-    if(typeof tutoName !== "string"){
+    if (typeof tutoName !== "string") {
         throw new Error("The method startTuto must take a string.")
     }
     // fetch tuto
@@ -24,10 +24,8 @@ function startTuto(this: TutoBoxType, tutoName: string): boolean {
     this.isTourRunning = false
     this.currentTuto = tuto
     this.currentStep = -1
-    //check if it is dynamic tuto
-    if(tuto.dynamic){
-        this._createObserver()
-    } 
+    //start observing the DOM
+    this._createObserver()
     this._runCallback("start-tuto", eventData)
     this.next()
     return true

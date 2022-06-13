@@ -33,8 +33,9 @@ export type TutoBoxType =
         _checkStartedTuto(): void,
         _startWaitingForNextStep: typeof startWaitingForNextStep,
         _runCallback(callbackName: EventType, data?: EventData|TutoBoxOptions): void,
-        _handleWaitingForStep(): void
-        addEventListener(eventName: EventType, callback: EventCallback): void
+        _handleWaitingForStep(): void,
+        _handleAccidentalRemove():void,
+        addEventListener(eventName: EventType, callback: EventCallback): void,
         removeEventListener(eventName: EventType, callback: EventCallback): boolean
 
         // user API

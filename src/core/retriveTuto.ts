@@ -1,7 +1,8 @@
 import { ExtendsHelper } from "../types/extendsHelper.type"
 import Tuto, { ParsedTutoStep, TutoStep } from "../types/tuto.type"
 import { MultipleTutoValue } from "../types/utils.type"
-import castStep from "../utils/castStep"
+import getTutoValue from "../utils/getTutoValue"
+import sortStep from "../utils/sortStep"
 import { EnableDisplayTuto } from "../utils/validator/errors"
 import fetchTutoboxAttr from "./fetchTutoStepAttr"
 
@@ -11,10 +12,15 @@ import fetchTutoboxAttr from "./fetchTutoStepAttr"
  * 
  * @param tutoName the name of tutorial to retrieve
  * @param extendsHelpers the list of entendsHelper
+ * @param noError If throw error when the tuto cant start.
  * @returns tutos 
  */
 function retrieveTuto(tutoName: string, extendsHelpers: ExtendsHelper[] = []): Tuto | false {
     return _retrieveTuto(tutoName, extendsHelpers)
+}
+
+export function retrieveTutoNoError(tutoName: string, extendsHelpers: ExtendsHelper[] = []): Tuto | false {
+    return _retrieveTuto(tutoName, extendsHelpers,true)
 }
 
 /**
@@ -26,11 +32,11 @@ function retrieveTuto(tutoName: string, extendsHelpers: ExtendsHelper[] = []): T
  * encountered, because they must not stop script running
  * @returns tutos
  */
-function _retrieveTuto(tutoName: string, extendsHelpers: ExtendsHelper[], parentResolving?: boolean): Tuto | false {
+function _retrieveTuto(tutoName: string, extendsHelpers: ExtendsHelper[], noError?: boolean, parentResolving?: Boolean): Tuto | false {
     let isDynamicTuto: boolean = false
     let canStartTuto: boolean = false
 
-    const tutoStepList: TutoStep[] = []
+    let tutoStepList: TutoStep[] = []
     // getting tuto-box elements
     const elements = document.querySelectorAll(`*[data-tuto*=${tutoName}]`)
     elements.forEach(element => {
@@ -64,26 +70,23 @@ function _retrieveTuto(tutoName: string, extendsHelpers: ExtendsHelper[], parent
     const extendsHelper = extendsHelpers?.find(item => item.tutoName === tutoName)
 
     if (extendsHelper && extendsHelper.extendsTuto) {
-        parentTuto = _retrieveTuto(extendsHelper.extendsTuto, extendsHelpers, true)
+        parentTuto = _retrieveTuto(extendsHelper.extendsTuto, extendsHelpers, noError, true)
     }
-
-    if (!canStartTuto && !parentTuto) {
-        if (parentResolving) {
-            console.group()
-            console.warn(`Tutorial ${tutoName} cannot be started. It lacks the beginning step.`)
-            console.log("You can ignore this warning if your tuto is dynamic.")
-            console.groupEnd()
+    if (!noError) {
+        if (!canStartTuto && !parentTuto) {
+            if (parentResolving) {
+                console.group()
+                console.warn(`Tutorial ${tutoName} cannot be started. It lacks the beginning step.`)
+                console.log("You can ignore this warning if your tuto is dynamic.")
+                console.groupEnd()
+            }
+            else EnableDisplayTuto(tutoName)
+            return false
         }
-        else EnableDisplayTuto(tutoName)
-        return false
     }
 
     // sort step
-    tutoStepList.sort((first, second) => {
-        const firstStep = castStep(getTutoValue(first.step, tutoName))
-        const secondStep = castStep(getTutoValue(second.step, tutoName))
-        return firstStep - secondStep
-    })
+    tutoStepList = sortStep(tutoStepList,tutoName)
 
     //create tuto object
     const tuto: Tuto = {
@@ -93,7 +96,7 @@ function _retrieveTuto(tutoName: string, extendsHelpers: ExtendsHelper[], parent
             ? [...parentTuto.steps, ...tutoStepList]
             : tutoStepList,
         includes: parentTuto
-            ? [...(parentTuto?.includes||[]), tutoName]
+            ? [...(parentTuto?.includes || []), tutoName]
             : [tutoName],
     }
 
@@ -118,14 +121,6 @@ const getUsableStepData = (step: ParsedTutoStep, tutoName: string): TutoStep => 
         }
     }
     return tutoStep as TutoStep
-}
-
-const getTutoValue = (attrValue: string | MultipleTutoValue, tutoName: string): string => {
-    if (typeof attrValue === "string") return attrValue
-    else if (typeof attrValue === "object") {
-        return attrValue[tutoName] || attrValue.default
-    }
-    return ""
 }
 
 export default retrieveTuto

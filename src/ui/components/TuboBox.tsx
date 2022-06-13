@@ -32,26 +32,32 @@ const tutobox = ({ tutobox }: BoxPops) => {
         setWaitingForStep(tutobox.isWaitingForStep?.direction || null)
     }, [])
 
+    const onStopTuto = useCallback(() => {
+        setCurrentStep(null)
+        setCanNext(false)
+        setCanPrev(false)
+    },[])
+
     useEffect(() => {
         tutobox.addEventListener("step-change", changeStep)
 
         tutobox.addEventListener("start-waiting", handleWaitingStep)
         tutobox.addEventListener("stop-waiting", handleWaitingStep)
+
+        tutobox.addEventListener("stop-tuto", onStopTuto)
+        tutobox.addEventListener("accidental-remove", onStopTuto)
         return () => {
             tutobox.removeEventListener("step-change", changeStep)
 
             tutobox.removeEventListener("start-waiting", handleWaitingStep)
             tutobox.removeEventListener("stop-waiting", handleWaitingStep)
 
+            tutobox.removeEventListener("stop-tuto", onStopTuto)
+            tutobox.removeEventListener("accidental-remove", onStopTuto)
         }
     }, [])
 
-    const stopTuto = () => {
-        tutobox.stop()
-        setCurrentStep(null)
-        setCanNext(false)
-        setCanPrev(false)
-    };
+    const stopTuto = () => tutobox.stop()
 
     const nextStep = () => {
         if (isEnd) {
@@ -68,7 +74,7 @@ const tutobox = ({ tutobox }: BoxPops) => {
     if (!currentStep) return null
 
     return (
-        <div className=" ">
+        <div>
             <TooltipBox
                 title={currentStep.stepTitle}
                 des={currentStep.des}
