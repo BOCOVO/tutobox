@@ -22,6 +22,9 @@ function startTuto(this: TutoBoxType, tutoName: string): boolean {
         tutoName
     }
     this.isTourRunning = false
+    if(this.isWaitingForStep){
+        delete this.isWaitingForStep
+    }
     this.currentTuto = tuto
     this.currentStep = -1
     //start observing the DOM

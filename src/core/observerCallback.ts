@@ -41,6 +41,9 @@ function observerCallback(this: TutoBoxType, mutations: MutationRecord[]) {
                     ) {
                         addActionListener(this._actionNextStep, step.action, addedNode)
                     }
+                } else {
+                    // not need to continue
+                    break
                 }
             }
         }
@@ -51,6 +54,9 @@ function observerCallback(this: TutoBoxType, mutations: MutationRecord[]) {
                 && (this.currentStep !== undefined)
             ) {
                 applyUpdate(removedNode)
+            } else {
+                // not need to continue
+                break
             }
         }
     }

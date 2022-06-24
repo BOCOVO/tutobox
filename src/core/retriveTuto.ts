@@ -38,7 +38,7 @@ function _retrieveTuto(tutoName: string, extendsHelpers: ExtendsHelper[], noErro
 
     let tutoStepList: TutoStep[] = []
     // getting tuto-box elements
-    const elements = document.querySelectorAll(`*[data-tuto*=${tutoName}]`)
+    const elements = document.querySelectorAll(`[data-tuto=${tutoName}],[data-tuto*='|${tutoName}|'],[data-tuto$='|${tutoName}'],[data-tuto^='${tutoName}|']`)
     elements.forEach(element => {
 
         const tutoStepData = fetchTutoboxAttr(element as HTMLElement)
@@ -68,7 +68,7 @@ function _retrieveTuto(tutoName: string, extendsHelpers: ExtendsHelper[], noErro
     // handle extending tuto
     let parentTuto: Tuto | false = false
     const extendsHelper = extendsHelpers?.find(item => item.tutoName === tutoName)
-
+   
     if (extendsHelper && extendsHelper.extendsTuto) {
         parentTuto = _retrieveTuto(extendsHelper.extendsTuto, extendsHelpers, noError, true)
     }

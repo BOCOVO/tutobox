@@ -9,6 +9,9 @@ function startTour(this: TutoBoxType): void {
         this.currentTuto = tuto
         this.currentStep = 0
         this.isTourRunning = true
+        if(this.isWaitingForStep){
+            delete this.isWaitingForStep
+        }
         //start observing the DOM
         this._createObserver()
         onStep(this.currentTuto, this.currentStep, this._runCallback)

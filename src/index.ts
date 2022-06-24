@@ -73,10 +73,9 @@ class _TutoBox {
         }
     }
 
-    #observerCallback(
-        this: this & TutoBoxType,
+    #observerCallback = (
         ...args: ArgumentsType<typeof observerCallback>
-    ) {
+    ) => {
         observerCallback.call(this, ...args)
     }
 
@@ -85,7 +84,7 @@ class _TutoBox {
     }
 
     _createObserver(this: this & TutoBoxType) {
-        createObserver.call(this, this.#observerCallback.bind(this))
+        createObserver.call(this, this.#observerCallback)
     }
 
     _startWaitingForNextStep(...args: ArgumentsType<typeof startWaitingForNextStep>) {

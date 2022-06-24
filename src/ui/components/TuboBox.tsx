@@ -21,6 +21,9 @@ const tutobox = ({ tutobox }: BoxPops) => {
             setCanNext(!!eventData.next);
             setCanPrev(!!eventData.prev);
             setIsEnd(!!eventData.end)
+            if (!tutobox.isWaitingForStep && waitingForStep) {
+                setWaitingForStep(null)
+            }
             if (eventData.bubbles) {
                 setBubblesData(eventData.bubbles)
             } else {
@@ -36,7 +39,7 @@ const tutobox = ({ tutobox }: BoxPops) => {
         setCurrentStep(null)
         setCanNext(false)
         setCanPrev(false)
-    },[])
+    }, [])
 
     useEffect(() => {
         tutobox.addEventListener("step-change", changeStep)
